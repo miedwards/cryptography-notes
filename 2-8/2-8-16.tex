@@ -1,0 +1,152 @@
+\documentclass{article}
+\usepackage[usenames,dvipsnames]{pstricks}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathrsfs}
+\usepackage{pst-grad} % For gradients
+\usepackage{pst-plot} % For axes
+\usepackage{subcaption}
+\usepackage{tikz}
+
+\title{Notes for Cryptography}
+\author{Professor Brian Sittinger}
+\date{2/8/16}
+
+\begin{document}
+\maketitle
+\section{HW2 Questions}
+
+See HW2.tex. Also, hw3 is supposedly harder.
+
+\section{Chapter 2}
+We're going through half of chapter 2. I should catch up on my reading. 
+\subsection{Field Extensions}
+A Field is a commutative ring with multiplicative inverses. Let $k$ be a field.
+Then $L$ is a field extension of $k$ iff $L$ is a field containing $k$. For this
+course $k = \mathbb{Q}$ most of the time. For example $\mathbb{C}$ is a field
+extension of $\mathbb{R}$. $\mathbb{R}$ is a field extension of $\mathbb{Q}$.
+And $\mathbb{Q}(i) = \{ a + bi | a,b \in \mathbb{Q} \}$ is a field extension of
+$\mathbb{Q}$. When $L$ is a field extention of $k$, we write $L:k$. $L$ is a
+Vector Space over $k$. So, we can discuss the ``Dimension'' called ``the
+degree'' of the field extension over $k$ written $[L:k]$. 
+\subsubsection{Examples}
+\[ [\mathbb{Q}(i) : \mathbb{Q}] = 2 \]
+because $\mathbb{Q}(i)$ has basis $\{1,i\}$ over $\mathbb{Q}$. 
+
+\subsection{Tower Law}
+Let 
+\[ K \subseteq L \subseteq M \]
+be a ``tower'' of 3 fields, or 3 fields such that
+\[ L : K, M : L \]
+Then
+\[ [ M : K ] = [ M : L] \cdot [ L : K ] \]
+This is used in homework 3. 
+
+Suppose we wanted to find
+\[ [ \mathbb{Q}(\sqrt{2}, \sqrt{3}) : \mathbb{Q} ] \]
+we may now consider
+\[ [ \mathbb{Q}(\sqrt{2}) : \mathbb{Q}] = 2\]
+and \[ [ \mathbb{Q}\sqrt{2},\sqrt{3} : \mathbb{Q}(\sqrt{2}) ] = 2\]
+Note: The minimal polynomial gives the degree of the extension. Be thorough. 
+
+Generally, we will concern ourselves with finite extensions, due to relevance.
+We define 
+\[ L : K, \alpha \in L \]
+\begin{enumerate}
+\item If there exists a polynomial $p(t) \in K[t]$ such that $p(\alpha) = 0$.
+Then $\alpha$ is algebraic over the base field $K$. 
+\item Otherwise, $\alpha$ is not algebraic but trancendental.
+\end{enumerate}
+We'll let $K = \mathbb{Q}$ in this course. Examples of trancedental numbers are
+$\pi$ and $e$. Consider
+\begin{verbatim}https://en.wikipedia.org/wiki/Liouville_number\end{verbatim}
+So how many algebraic numbers and trancendental numbers over $\mathbb{Q}$ exist?
+There are countably many algebraic numbers, and uncountably many trancendentals.
+We can see this by first noting that $\mathbb{Q}$ is countable, and then noting
+that $\mathbb{C}$ is uncountable. 
+
+Suppose $\alpha$ is algebraic over $K$. Then the monic polynomial $p(K)$ of smallest
+degree for which $p(\alpha) = 0$ is called the minimal polynomial of $\alpha$
+over $K$. 
+
+Some interesting notes:
+\begin{itemize}
+\item The minimal polynomial is irreducible over $K$. 
+\item Take $k = \mathbb{Q}$. Then we can clear ``denominators'' so that we have
+a minimal polynomial with coefficients in the integers
+\end{itemize}
+
+Let $L:K$ with $\alpha \in L$. Then $\alpha$ is algebraic over $K$ is equivalent
+to saying that
+\[ [ K(\alpha) : K ] < \infty \]
+Moreover,
+\[ [ K(\alpha) : K ] = \text{deg}(\text{min poly of }a) \]
+and 
+\[ K(a) = K[a] \]
+the difference in notations refers to the difference between a ring and a field.
+That is
+\[ K[,a_1, a_2, \ldots, a_n] \]
+is the smallest ring containing $a_1,\ldots,a_n$. This is in essence a set of
+polynomials in $a_1, \ldots, a_n$ with coefficients in $K$. Similarly, 
+\[ K(a_1, \ldots, a_n) \]
+is the smallest field containing $a_1,\ldots,a_n$. It is the set of rational
+functions in $a_1, \ldots, a_n$ with coefficients in $K$. What are rational
+functions? Similar to polynomials, it can be defined
+\[ k(a_1,\ldots,a_n) = \left\{\frac{f(a_1, \ldots, a_n)}{g(a_1, \ldots,
+a_n)} \mid f,g \in K[a_1,\ldots,a_n] \text{ and } g \neq 0 \right\} \]
+
+Let $d$ be a squarefree integer. Look at 
+\[ \mathbb{Q}[\sqrt{d}] \]
+Then
+\[ [ Q\mathbb{Q}[\sqrt{d}] : \mathbb{Q} ] = 2 \]
+because $x^2 = d$ is the minimum polynomial of $\sqrt{d}$ over $\mathbb{Q}$.
+And $\sqrt{d}$ is algebraic over $\mathbb{Q}$. Also, 
+\[ \mathbb{Q}[\sqrt{d}] = \left\{ a \cdot 1 + b \sqrt{d} \mid a,b \in \mathbb{Q}
+\right\} \]
+has basis $\{1, \sqrt{d}\}$. This is closed under addition and multiplication.
+Next, we note that
+\[ \mathbb{Q}(\sqrt{d}) = \mathbb{Q}[\sqrt{d}] \]
+We show that the field is contained within the ring by using the conjugate, that
+is
+\[ \frac{1}{a _ b \sqrt{d}} \cdot \frac{ a - b\sqrt{d} }{a - b\sqrt{d} } \]
+Now, $\mathbb{Q}[\sqrt{d}]$ is a quadratic number field. Look this up in more
+detail. Back to algebraic numbers and integers!
+
+\section{Algebraic Numbers and Integers}
+We define the set of all algebraic numbers over $\mathbb{Q}$ sometimes denoted
+$\mathbb{A}$ or $\bar{\mathbb{Q}}$. In the homework, we may show that
+\[ [ \mathbb{A} : \mathbb{Q} ] = \infty!! \]
+where we count down by two for double factorial. 
+
+Note that $\mathbb{A}$ is a subfield of $\mathbb{C}$. Let $\alpha, \beta \in
+\mathbb{A}$. Then by the tower law
+\[ [p\mathbb{Q}(\alpha, \beta)] =
+[\mathbb{Q}(\alpha,\beta):\mathbb{Q}(\alpha)] \cdot [\mathbb{Q}(\alpha) :
+\mathbb{Q}] \]
+We are multiplying two finite extensions together, since $\beta$ is algebraic
+over $\mathbb{Q}$ and so $\mathbb{Q}(\alpha)$ is too. Therefore
+$\mathbb{Q}(\alpha, \beta)$ is a finite extension over $\mathbb{Q}$ and so
+closure and inverses under addition and multiplication are guaranteed.
+
+Now we define $K$ as an algebraic number field over $\mathbb{Q}$ if $K$ is a
+subfield of $\mathbb{C}$ and $[K,\mathbb{Q}]$ is finite. 
+So, $K$ is a subfield of $\mathbb{A}$ and $K = \mathbb{Q}(a_1,\ldots,a_n)$ for
+some $a_1,\ldots,a_n \in K$. We can do better, though --- we only need 1
+generator! That is $K = \mathbb{Q}(\theta)$ for some $\theta \in \mathbb{A}$.
+See Theorem 2.2 from the book. 
+
+To find the professor's mailbox, look for a copy room past Chris, a guy with a
+computer. 
+
+
+
+
+
+
+
+
+
+\end{document}
