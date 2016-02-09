@@ -141,12 +141,78 @@ See Theorem 2.2 from the book.
 To find the professor's mailbox, look for a copy room past Chris, a guy with a
 computer. 
 
+Algebraic integers over the rationals are a zero of a monic polynomial in the integers.
 
+\begin{tabular}{c|c}
+Number Fields & Number Rings \\
+$\bar{\mathbb{Q}}$ or $\mathbb{A}$ & $\mathbb{B}$ \\
+$\mathbb{Q}(\theta) = K$ & $\mathbb{Z}[\alpha] = \mathcal{O}$ \\
+$\mathbb{Q}$ & $\mathbb{Z}$ \\
+Number Field Tower & Number Ring Tower\\
+\end{tabular}
 
+For example, if $k = \mathbb{Q}(i)$, then $\mathcal{O} = \mathbb{Z}[i]$.
 
+\section{Conjugates, norms and traces}
+This has a flavor of Galois theory to it. Theorem 2.4 from the book. 
+Let $k = \mathbb{Q}(\theta)$ be a number field of degree $n$ over $\mathbb{Q}$.
+Then there are exactly $n$ distinct embeddings $\sigma_j: K \rightarrow
+\mathbb{C}$ with $j = 1, \ldots, n$. Embeddings are one to one ring
+homomorphisms that fix $\mathbb{Q}$. That is $\sigma_j(q) = q \forall q \in
+\mathbb{Q}$. Moreover, the elements $\sigma_j(\theta)\equiv \theta_j$ for each
+$j = 1,\ldots,n$ are the distinct zeros in $\mathbb{C}$ of the minimal
+polynomials of $\theta$ over $\mathbb{Q}$. The elements $\theta_1, \ldots,
+\theta_n$ are the $k$-conjugates of $\theta$.
 
+\subsection{Example}
+More about $K=\mathbb{Q}(\sqrt{d})$ where $d$ is square free. Recall that the
+minimal polynomial is $x^2 - d$ with zeroes $\pm \sqrt{d}$. By our theorem,
+there exists $ [\mathbb{Q}(\sqrt{(d)}) : \mathbb{Q} ] = 2$ embeddings. And so
+\[ \sigma_1(1) = 1 \text{ and } \sigma_1(\sqrt{d}) = \sqrt{d} \]
+So 
+\[ \sigma_1(a + b \sqrt{d}) = a + b \sqrt{d} \]
+So we see that this is the identity map. 
 
+Let us now consider $\sigma_2$ where
+\[ \sigma_2(1) = 1 \text{ and } \sigma_2(\sqrt{d}) = - \sqrt{d} \]
+And so $\sigma_2$ is what we used to call ``conjugation.''
 
+\subsection{Another Example}
+Let $K = \mathbb{Q}(6^{1/3})$. The minimum polynomial is $x^3 - 6$ with three
+roots $\sqrt{6}, \omega 6^{1/3}, \omega^2 6^{1/3}$
+where $\omega = e^{\frac{2 \pi}{3}}$ is a cube root of unity. By our theorem,
+there are 3 embeddings. 
+\begin{enumerate}
+\item $\sigma_1( 1 ) = 1$
+\item $\sigma_1( 6^{1/3} ) = 6^{1/3}$
+\item $\sigma_1(6^{2/3}) = 6^{2/3}$ Because it's a homomorphism. 
+\end{enumerate}
+And so $\sigma_1$ is the identity map. 
 
+\[ \sigma_2(1) = 1, \sigma_2(6^{1/3}) = \omega 6^{1/3}, \sigma_2(6^{1/3} )=
+(\omega 6^{1/3})^2 \]
+\[ \sigma_3(a+b6^{1/3}+c 6^{2/3}) = a + b(\omega^2 6^{1/3}) + c(\omega^2
+6^{1/3})^2 \]
+
+Let $K = \mathbb{Q}(\theta)$ of degree $n$ over $\mathbb{Q}$, and
+$\{a_1,\ldots,a_n\}$ be a basis of $K$ over $\mathbb{Q}$. We define the
+``discriminent'' 
+\[ \Delta[a_1,\ldots,a_n] = \{ \det(\sigma_i(a_j)) \}^2 \]
+
+We define the Trace of $a$ denoted $\text{Tr}(a)$ as
+\[ \text{Tr}(a) = \sum_{j=1}^n = \sigma_j(a) \]
+
+We define the Norm for $a \in K$ as
+\[ N(a) = \prod_{j=1}^n \sigma_j (a) \]
+And so we note that $\Delta, \text{Tr}, N \in \mathbb{Q}$. Moreover, if we
+replace $K$ with $\mathcal{O}_k$, then $\Delta, \text{Tr}, N \in \mathbb{Z}$.
+
+Some other facts. The Trace is additive and the Norm is multiplicative. 
+
+We return now to $K = \mathbb{Q}[\sqrt{d}]$. 
+\[ \text{Tr}(a + b \sqrt{d}) = 2a \]
+\[ N(a + b \sqrt{d}) = a^2 -db^2 \]
+\[ \Delta[1, \sqrt{d}] = \begin{vmatrix} 1 & \sqrt{d} \\ 1 & -\sqrt{d}
+\end{vmatrix}^2 = 4d \]
 
 \end{document}
