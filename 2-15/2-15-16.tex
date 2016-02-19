@@ -103,7 +103,7 @@ necessary.
 \section{Examples of integral bases}
 Consider $K = Q(\sqrt{d})$, $d$ is square free.
 Guess for an integral basis: $\{1, \sqrt{d}\}$. Then 
-\[ \Delta_G = \begin{bmatrix} 1 & \sqrt{d} \\ 1 & -\sqrt{d} \end{bmatrix} = 4d
+\[ \Delta_G = \begin{vmatrix} 1 & \sqrt{d} \\ 1 & -\sqrt{d} \end{vmatrix} = 4d
 \]
 The there exists poss alegebraic integer of the form
 \[ \alpha = \frac{1}{2}(\lambda_1 + \lambda_2 \sqrt{d}), \lambda_1,\lambda_2 \in
@@ -140,9 +140,9 @@ Embeddings:
 \rightarrow \omega^4 \theta^2 = \omega \theta^2 \]
 Where $\theta = 5^{1/3}$ and $\omega$ is a 3rd root of unity.
 So
-\[ \Delta_G = \begin{bmatrix} 1 & \theta & \theta^2 \\
+\[ \Delta_G = \begin{vmatrix} 1 & \theta & \theta^2 \\
 1 & \omega \theta & \omega^2 \theta^2 \\
-1 & \omega^2 \theta & \omega \theta^2 \end{bmatrix} = -3^2 5^2 \]
+1 & \omega^2 \theta & \omega \theta^2 \end{vmatrix} = -3^3 5^2 \]
 
 As said in the textbook (Prop 2.18) we let $k = Q(\theta)$, deg $n$,
 \[ \Delta[1,\theta,\ldots,\theta^{n-1}] = (-1)^{\frac{n(n-1)}{2}} N(p'(\theta)) \]
