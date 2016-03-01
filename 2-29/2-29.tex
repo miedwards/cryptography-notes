@@ -1,0 +1,239 @@
+\documentclass{article}
+\usepackage[usenames,dvipsnames]{pstricks}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{mathrsfs}
+\usepackage{pst-grad} % For gradients
+\usepackage{pst-plot} % For axes
+\usepackage{subcaption}
+\usepackage{tikz}
+
+\title{Notes for Cryptography}
+\author{Professor Brian Sittinger}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Introduction}
+HW problem 6 
+\[ \mathbb{Q}_{P} = \{a/b | b \nmid a, a,b \in \mathbb{Z}, b \neq 0 \} \]
+this is a subset of $\mathbb{Q}$. A:
+\[ (\mathbb{Q}_{(p)})^* = \{ \frac{a}{b}| p\nmid a,b \} \]
+B: Only irreducible in $\mathbb{Q}_{(p)}$  come from factors whose num are
+divisible by $p$. Therefore 
+\[ p^k m / n , p \nmid m, n \]
+\[ k = 1 \]
+for irreducible $s$. 
+
+\section{Chapter 5 --- Factorization into Prime Ideals}
+\[ 6 = 2 \cdot 3 = (1+\sqrt{5})(1-\sqrt{5}) \]
+Is a non-unique factorization into irreducibles. To restore factors, we will
+pass to prime ideals. 
+
+Let $I$ be a proper ideal in a ring $R$. Then we define $I$ as a \emph{prime
+ideal} iff whenever 
+\[ JK \subseteq I \]
+for some ideals $J,K \subseteq R$, we have $ J \subseteq I$ or $K \subseteq I$.
+Furthermore, we define $I$ to be \emph{maximal} iff there are no ideals strictly
+between $I$ and $R$. 
+
+If $R$ is an integral domain (no zero divisors and $ab = 0 \implies a = 0$ or $b
+= 0$) then 
+\[ \langle p \rangle \text{ is a prime ideal} \iff p \text{ is prime or } p = 0
+\]
+The only ideals in a field $F$ are $\{0\}$ or $\langle 1 \rangle = F$. 
+Lemma: let $I$ be an ideal of $R$. Then $I$ is maximal iff $R/I$ is a field.
+Also, iff $I$ is prime, $R/I$ is an integral domain. A corollary of this is that
+maximal ideals are prime. The converse is not necessarily true. For example
+$\langle x \rangle$ is prime in $\mathbb{Z}[x]$ but not maximal. Note that
+\[ \mathbb{Z}[x] / \langle x \rangle \cong \mathbb{Z} \]
+
+We may now approach the following theorem. $\mathcal{O}$ is a ``Dedicand
+Domain.'' That is, $\mathcal{O}$ is an integral domain with field of fractions
+$K$. One example of this is $\mathbb{Z}$ and $\mathbb{Q}$. Furthermore,
+$\mathcal{O}$ is Noetherian. Additionally, if $\alpha \in K$ satisfies a monic
+polynomial $f(x)\in \mathcal{O}[x]$ (with coeficients in $\mathcal{O}$) then
+$\alpha \in \mathcal{O}$. That is $\mathcal{O}$ is ``integrally closed.'' For example
+\[ \mathbb{Z} [-\sqrt{3}] \neq \mathcal{O} \text{ but }
+\mathbb{Z}\left[\frac{-1+\sqrt{-3}}{2}\right]=\mathcal{O}_k \]
+Every nonzero prime ideal of $\mathcal{O}$ is maximal (within Dedicand Domains).
+This final statement is basicailly theorem 2.10 from the book. I prove it below:
+let $\mathfrak{p}$ be a prime ideal of $\mathcal{O}$. Let $\alpha \in
+\mathfrak{p}$ be nonzero. Let $n = [K:\mathbb{Q}]$. So $N := N(\alpha) =
+\alpha_1(\alpha_2\ldots\alpha_n) \in \mathfrak{p}$ where $a_i, 1\leq i \leq n$
+are the conjugates of $n$. So $\langle n \rangle \subseteq \mathfrak{p}$ Then 
+$\mathcal{O}/\mathfrak{p}$ is finite because $\mathcal{O}/\langle p \rangle$
+is finite, because $\mathcal{O} / \langle N \rangle$ is finite of order $N^n$
+and $\langle N \rangle \subseteq \mathfrak{p}$. Moreover
+$\mathcal{O}/\mathfrak{p}$ is an integral domain. Therefore
+$\mathcal{O}/\mathfrak{p}$ is a field (because finite integral domains are
+fields). And so we see that $\mathfrak{p}$ is maximal as required. 
+
+Some reminders:
+\begin{enumerate}
+\item $\mathfrak{a}|\mathfrak{b} \iff \mathfrak{b} \subseteq \mathfrak{a}$,
+where $\mathfrak{a}$ and $\mathfrak{b}$ are ideals. 
+\item $\mathfrak{a} + \mathfrak{b} = \{ a + b | a \in \mathfrak{a}, b \in
+\mathfrak{b} \}$
+\item $\mathfrak{a}\mathfrak{b} = \{\sum_{k=1}^{n} a_kb_k | a_k\in \mathfrak{a}, b_k \in \mathfrak{b}
+\}, n \in \mathbb{N}$. In the finitely generated case, 
+\[ \mathfrak{a} = \langle a_1, a_2, \ldots, a_j \rangle \]
+\[ \mathfrak{b} = \langle b_1, \ldots, b_l \rangle \]
+Then $\mathfrak{a}\mathfrak{b} = \langle a_i b_k | i = 1,\ldots,j, k =
+1,\ldots,l \rangle$. 
+\end{enumerate}
+We now move onto our unique factorization theorem. Every ideal $\mathfrak{a} \in
+\mathcal{O}$ different from $\langle 0 \rangle, \langle 1 \rangle$
+admits a unique factorization $\mathfrak{a} =
+\mathfrak{p}_1\ldots\mathfrak{p}_r$ into prime ideals
+$\mathfrak{p}_1,\ldots,\mathfrak{p}_r \subseteq \mathcal{O}$ (see pages
+107-110). Which is unique up to order of the factors. The proof is in the book,
+but I give a sketch here. Let $\mathfrak{a} \subseteq \mathcal{O} \neq
+\langle0\rangle, \langle 1 \rangle$. Then there exist prime ideals in
+$\mathcal{O}$ such that $\mathfrak{p}_i \subseteq \mathfrak{a}$. For an ideal
+$\mathfrak{a} \subseteq \mathcal{O}$ we define $\mathfrak{a}^{-1} = \{ x \in K |
+x\mathfrak{a} \subseteq \mathcal{O} \}$. This is called a ``Fractional Ideal.''
+Check $\mathfrak{a}\mathfrak{a}^{-1} = \mathfrak{a}^{-1}\mathfrak{a} = \langle 1 \rangle =
+0$. If
+\[ \mathfrak{a} \not \subseteq \mathcal{O} \]
+Then 
+\[ \mathfrak{a}^{-1} \not\supseteq \mathcal{O} \]
+If $\mathfrak{a} \neq \{ 0 \}$ and $\mathfrak{a} S \subseteq \mathfrak{a}$ for
+any subset $S$ of $K$. Then $S \subseteq \mathcal{O}$. $\mathfrak{p}$ maximal,
+$\mathfrak{p}\mathfrak{p}^{-1} = \mathcal{O}$. For all nonzero $\mathfrak{a}$,
+$\mathfrak{a}\mathfrak{a}^{-1} \subseteq \mathcal{O}$. Define the fractional
+ideal of $K$ as follows. A finitely generated $\mathcal{O}$ submodule
+$\mathfrak{A} \neq \{0\}$ of $K$ iff there does not exist non-zero $c \in
+\mathcal{O}$ such that $c\mathfrak{a} \subseteq \mathcal{O}$ is an ideal of
+$\mathcal{O}$. Every fractional ideal $\mathfrak{a}$ has an inverse
+$\mathfrak{a}^{-1}$ such that $\mathfrak{a}\mathfrak{a}^{-1} = \mathcal{O}$.
+Note that $J$ is the set of all fractional ideals of $K$ is an Abelian group. 
+Every nonzero $\mathfrak{a}$ is a product of prime ideals. Thus, the prime
+factorization is unique. Furthermore, fractional ideals have unique
+factorization. 
+
+An example: $\mathbb{Z}[\sqrt{-5}]$ revisited. Let $\mathfrak{p} = \langle 2, 1
++ \sqrt{-5} \rangle, \mathfrak{q} = \langle 3, 1 + \sqrt{-5} \rangle, 
+\mathfrak{r} = \langle 3, 1 - \sqrt{-5} \rangle$
+We claim that the ideals are maximal and so prime. Note that for $\mathfrak{p}$
+\[ \left| \mathbb{Z}[\sqrt{-5}]/\langle 2 \rangle \right| = 4 \]
+Since $\langle 2 \rangle\not\subseteq \langle 2, 1 + \sqrt{-5} \rangle$
+\[ \left|\mathbb{Z}[\sqrt{-5}]/\mathfrak{p}\right| \]
+has order \emph{dividing} 4 by Lagrange theorem. The only possibility for 
+\[ \left|\mathbb{Z}[\sqrt{-5}]/\mathfrak{p}\right| \]
+is 2 because
+\[ \langle 2 \rangle \not \subseteq \mathfrak{p} \text{ and can't be }
+\mathbb{Z}[\sqrt{-5}] \]
+Therefore, $\mathbb{Z}[\sqrt{-5}] / \mathfrak{p} \cong \mathbb{Z}_2$, is a
+field. In other words, a ring with $p$ elements with prime $p$ is a field, and
+so that $\mathfrak{p}$ is maximal since $\mathbb{Z}[\sqrt{-5}]$ is a dedicand
+domain. 
+
+Our second claim is that these ideals are \emph{not} principle. Suppose that
+$\mathfrak{p}$ are not principle. Suppose that $\mathfrak{p} = \langle a + b
+\sqrt{-5} \rangle $, $a,b \in \mathbb{Z}$. $\langle 1, 1+\sqrt{-5}\rangle$. So
+$2 = (a + b\sqrt{5})(c+d\sqrt{-5}) \in \mathbb{Z}[\sqrt{-5}] $ and 
+$1 + \sqrt{-5} = (a + b\sqrt{-5})(m+n\sqrt{-5})$. Take the norms to get 
+\[ N(2) = 2^2 (a^2 + 5b^2)(c+5d^2) \]
+\[ N(1+\sqrt{-5}) = (a^2+5b^2) (c^2 + 5d^2) \]
+Thus
+\[ (a^2+5b^2) \mid 4 \text{ and } (a^2+5b^2) \mid 6  \]
+and so
+\[ (a^2+5b^2) \mid 6 - 4 = 2 \]
+Thus $(a^2+5b^2)  = 1, 2$, but if it is 1, then it is a unit. But there are no
+solutions if it is 2. Thus no $a,b$ exist, and $\mathfrak{p}$ is not principal.
+Claim 3: 
+\[ \mathfrak{p}^2 = \langle 2 \rangle, \mathfrak{q}\frak{r} = \langle3\rangle,
+\mathfrak{pq} = \langle 1 + \sqrt{-5} \rangle, \mathfrak{pr} = \langle 1 -
+\sqrt{-5} \rangle \]
+The upshot of this is that 
+\[ \langle G \rangle = \langle 2 \rangle \langle 3 \rangle = \langle 1 +
+\sqrt{-5} \rangle \langle 1 - \sqrt{-5} \rangle = p^2 qr = pqpr \]
+Proof for $p^2 = \langle 2 \rangle$ is
+\[ p^2 = \langle 2\cdot2 , 2(1+\sqrt{-5}), (1+\sqrt{-5})^2 \rangle \]
+\[ p^2 = \langle 4, 2 + 2\sqrt{-5}, -4+2\sqrt{-5} +-(2+2\sqrt{-5}) \rangle \]
+\[ p^2 = \langle 4, 2+2\sqrt{-5}, 6 \rangle \]
+Since units don't matter and -6 can be replaced by 6. Furthermore we can use
+$6-4 = 2$. Thus this is $\langle 2 \rangle $. We can add, subtract or multiply
+be other generators.
+
+\subsection{The Norm of an Ideal}
+Consequences: 
+\begin{enumerate}
+\item Ideal GCD $\mathfrak{g}$ and LCM $\mathfrak{l}$. Let 
+\[ \frak{a} = \prod_i \frak{p}_i^{e_i} \text{ and } \frak{b} = \prod_i
+\frak{p}_i^{f_i} \]
+GCD $\frak{g} | \frak{a},\frak{b}$. And if $\frak{g}'$ has the same properties
+then $\frak{g}'|\frak{g}$. Rule
+\[ \frak{g} = \prod_i \frak{p}_i^{\text{min}(e_i, f_i)}, \frak{l} = \prod_i
+\frak{p}_i^{\text{max}(e_i, f_i)} \]
+Lemma: 
+\[ \frak{g} = \frak{a} + \frak{b} \]
+\[ \frak{l} = \frak{a} \cap \frak{b} \]
+\item We define the Norm of an ideal $\frak{N}$. 
+\[ \frak{N}(\frak{a}) := |\mathcal{O} / \frak{a}| \]
+Also, fyi,
+\[ \Phi(\frak{a}) = |(\mathcal{O}/\frak{a})^*| \]
+but we won't need this here. 
+
+\end{enumerate}
+Recall that for every nonzero ideal, $\frak{a}$ of $\mathcal{O}$ has a
+$\mathbb{Z}$-basis $\{\alpha_1, \ldots, \alpha_n\}$ where $n = [K:\mathcal{O}]$.
+Then 
+\[ \frak{N}(\frak{a}) =
+\left[\frac{\Delta[\alpha_1,\ldots,\alpha_n]}{\Delta_k}\right]^{1/2} \]
+This is used in the homework.
+
+A corollary, suppose that $\frak{a} = \langle \alpha \rangle$. Then
+\[ \frak{N}(\frak{a}) = \left|N(\alpha)\right| \]
+Proof, we let $\{\omega_1, \ldots, \omega_n\}$ be a $\mathbb{Z}$-basis for
+$\mathcal{O}$. Then, $\{ \alpha \omega_1, \ldots \alpha \omega_n \}$ is a
+$\mathbb{Z}$-basis for $\frak{a}$. Therefore, 
+\[ \frak{N}(\frak{a}) = \left[ \frac{\Delta[\alpha \omega_1, \ldots, \alpha
+\omega_n]}{\Delta[\omega_1, \ldots, \omega_n]} \right]^{1/2} =
+\left[\frac{N(\alpha)^2 \Delta_k}{\Delta_k}\right]^2 = |N(\alpha)| \]
+
+Some facts:
+\[ \frak{N}(\frak{a}\frak{b}) = \frak{N}(\frak{a})\frak{N}(\frak{b}) \]
+If $\frak{N}(\frak{a})$ is prime, then $\frak{a}$ is prime. 
+Also, $\frak{N}(\frak{a}) \in \frak{a}$. This is because $\frak{N}(\frak{a}) =
+|\mathcal{O}/\frak{a}|i \in \frak{a} $ by lagrange.
+If $\frak{a}$ is prime then, $\frak{N}(\frak{a}) = p^m$ for some prime $p$ and
+$m \leq [K:\mathbb{Q}]$. Theorem: finiteness results. 
+\begin{enumerate}
+\item Any nonzero ideal $\frak{a} \subseteq \mathcal{O}$ has a finite number of
+divisors. 
+\item Any nonzero ``rational integer'' in $\mathbb{Z}$ belongs to finitely many
+ideals. This comes down to a norm calculation. 
+\item Only finitely many ideals (false for numbers) of $\mathcal{O}$ have a
+given fixed norm. This flows from the finiteness of the number of ideals in
+$\mathcal{O}$. 
+\end{enumerate}
+Fact, let $\mathfrak{a}$ be an ideal. Then $\frak{a} = \langle \alpha, \beta
+\rangle $ for some $\alpha, \beta \in \mathcal{O}$. At most 2 generators. For
+example, $\mathbb{Z}[\sqrt{-5}]$. 
+\[ \langle 6 \rangle = \frak{p}^2 \frak{q} \frak{r} \] as previously defined. 
+Suppose $6 \in \frak{a}$. Then $\langle 6 \rangle \subseteq \frak{a}$, which is
+equivalent to $\frak{a} | \langle 6 \rangle = p^2 q r $. 
+So, $\frak{a} = \frak{p}^a \frak{q}^b \frak{r}^c, a\in \{0,1,2\}, b,c\in
+\{0,1\}$. So 6 belongs to finitely many ideals. How many ideals have norm
+$\langle 6 \rangle$. This can only happen when $\frak{a} | \langle 6 \rangle$ by
+fact 3. Writing $\frak{a} = \frak{p}^a\frak{q}^b\frak{r}^c$, implies that
+$N(\frak{a}) = 2^a 3^b3^c$ implies that $\frak{a} = \frak{pq}$ or $\frak{pf}$. 
+
+Theorem: $\mathcal{O}$ factors into irreducible elements iff every ideal in
+$\mathcal{O}$ is principle. First, PIDs are UIDs. Going the other way, it
+suffices to show that every prime ideal is principal. Let $\frak{p}$ be a
+nonzero prime in $\mathcal{O}$ Then $\frak{p} |
+\langle\frak{N}(\frak{p})\rangle$. Note $n = \pi_1 \pi_2 \ldots \pi_s$. Since
+$\frak{p}$ is prime, $\frak{p} | \langle \pi_i\rangle$ for some $i$. Since we
+have factors in $\mathcal{O}$, $\pi_i$ is prime. Therefore $\langle
+\pi_i\rangle$ is prime, and so $\frak{p} = \langle \pi_i\rangle$. 
+
+Read/skim through chapters 6---8 from the book. 
+
+\end{document}
